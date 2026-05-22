@@ -1,0 +1,6 @@
+{
+    "server_address": "localhost:8080",
+    "log_dir":"logs",
+    "poll_interval_ms": 200,
+    "retry_interval_ms": 200
+}
