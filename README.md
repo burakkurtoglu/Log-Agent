@@ -34,3 +34,35 @@ A lightweight, high-performance, and resilient log collection agent written in G
                                     +--------------------------+
                                     |    Central Log Server    |
                                     +--------------------------+
+```
+## ⚙️ Configuration (config.json)
+
+Configure your environment metrics through the config file at the root:
+```JSON
+{
+  "server_address": "localhost:8080",
+  "log_dir": "./logs",
+  "poll_interval_ms": 200,
+  "retry_interval_ms": 2000
+}
+```
+
+## 📦 Installation & Setup
+
+  Clone the repository:
+  ```Bash
+
+  git clone [https://github.com/yourusername/log-agent.git](https://github.com/yourusername/log-agent.git)
+  cd log-agent
+   ```
+
+  Ensure your target log directory exists and contains some .log files as specified in config.json.
+
+  Run the log agent:
+  ```Bash
+
+  go run main.go
+  ```
+  🔧 Technical Deep-Dive
+    Concurrency Control: Managed natively using context.Context to propagate cancellation signals deep down into isolated disk-reading workers.
+    I/O Efficiency: Implements buffered reading hooks via bounded 1024-byte byte slices coupled with a non-blocking time.After multiplexed select socket structure.
